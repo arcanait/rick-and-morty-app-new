@@ -13,6 +13,9 @@ export class CharacterListComponent implements OnInit {
 
   currentPage: string = '1';
 
+  nextPage: any;
+  prevPage: any;
+
   constructor(
     private characterService: CharacterService
   ) { }
@@ -24,8 +27,13 @@ export class CharacterListComponent implements OnInit {
   getCharacters() {
     this.characterService.getCharacterPagination(this.currentPage).subscribe(response => {
       this.characterList = response.results;
-      console.log(response)
+      this.nextPage = response.info.next;
+      this.prevPage = response.info.prev;
     })
+  }
+
+  aumentarPagina() {
+    // this.currentPage =
   }
 
 }
